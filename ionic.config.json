@@ -1,5 +1,7 @@
 {
   "name": "eldin-app",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
