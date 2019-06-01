@@ -13,41 +13,45 @@
         <ion-img (click)="getPicture()" class="profile-picture" [src]="this.profilePicture"></ion-img>
 
       </div>
-       
-      <ion-item>
-        <ion-label position="floating">Primeiro Nome</ion-label>
-        <ion-input type="text"></ion-input>
-      </ion-item>
-         
-      <ion-item>
-        <ion-label position="floating">Sobrenome</ion-label>
-        <ion-input type="text"></ion-input>
-      </ion-item>
-        
-      <ion-item>
-        <ion-label position="floating">E-mail</ion-label>
-        <ion-input type="email"></ion-input>
-      </ion-item>
-      
-      <ion-item>
-        <ion-label position="floating">Password</ion-label>
-        <ion-input type="password"></ion-input>
-      </ion-item>
+          
+      <form [formGroup]="formRegister" (ngSubmit)="register(formRegister.value)">
 
-      <ion-item>
-        <ion-label position="floating">Pretenção do Cargo:</ion-label>
-        <ion-input type="text"></ion-input>
-      </ion-item>
+        <ion-item>
+          <ion-label position="floating">Primeiro Nome</ion-label>
+          <ion-input type="text" formControlName="nome"></ion-input>
+        </ion-item>
+          
+        <ion-item>
+          <ion-label position="floating">Sobrenome</ion-label>
+          <ion-input type="text" formControlName="sobrenome"></ion-input>
+        </ion-item>
+          
+        <ion-item>
+          <ion-label position="floating">E-mail</ion-label>
+          <ion-input type="email" formControlName="email"></ion-input>
+        </ion-item>
         
-      <ion-item>
-        <ion-label position="floating">Experiência Profissional</ion-label>
-        <ion-textarea></ion-textarea>
-      </ion-item>
-  
-      <ion-button class="btn-login" color="tertiary" expand="block" shape="round">
-        <ion-icon slot="end" name="arrow-forward"></ion-icon>
-        Cadastrar-se
-      </ion-button>
+        <ion-item>
+          <ion-label position="floating">Password</ion-label>
+          <ion-input type="password" formControlName="password"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Pretenção do Cargo:</ion-label>
+          <ion-input type="text" formControlName="cargo"></ion-input>
+        </ion-item>
+          
+        <ion-item>
+          <ion-label position="floating">Experiência Profissional</ion-label>
+          <ion-textarea formControlName="experiencia"></ion-textarea>
+        </ion-item>
+    
+        <ion-button type="submit" class="btn-login" color="tertiary" expand="block" shape="round">
+          <ion-icon slot="end" name="arrow-forward"></ion-icon>
+          Cadastrar-se
+        </ion-button>
+
+      </form>
 
       <a [routerLink]="['/login']">Já tem uma conta? Faça login!</a>
 

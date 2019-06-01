@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { AuthenticationService } from './services/authentication.service';
 import { Component } from '@angular/core';
 
 import { Platform } from '@ionic/angular';
@@ -21,9 +23,18 @@ export class AppComponent {
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private router: Router,
+    private authenticationService: AuthenticationService
   ) {
     this.initializeApp();
+  }
+
+  logout() {
+    this.authenticationService.logoutUser()
+      .then((res) => {
+        this.router.navigateByUrl('/login');
+      });
   }
 
   initializeApp() {
