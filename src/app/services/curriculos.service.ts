@@ -2,7 +2,7 @@ import { Curriculo } from './../models/curriculo';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AngularFirestoreCollection, AngularFirestore, DocumentReference } from '@angular/fire/firestore';
-import { map, take } from 'rxjs/operators';
+import { map, take, filter } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +26,30 @@ export class CurriculosService {
           });
         })
       );
+
+  }
+
+  filtrarCurriculos(search: string): Observable<Curriculo[]> {
+
+    return this.curriculosCollection.snapshotChanges().pipe(
+      map(items => items.filter(item => {
+
+        return (
+          item.payload.doc.data().cargo.toLowerCase().includes(search.toLowerCase())
+          || item.payload.doc.data().nome.toLowerCase().includes(search.toLowerCase())
+          || item.payload.doc.data().sobrenome.toLowerCase().includes(search.toLowerCase())
+        );
+
+      })),
+      filter(items => items && items.length > 0),
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          return {id, ...data};
+        });
+      })
+    );
 
   }
 
