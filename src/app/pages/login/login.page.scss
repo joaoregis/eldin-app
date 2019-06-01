@@ -1,0 +1,27 @@
+.box-login{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    padding: 20px;
+    transform: translateY(70%);
+    background-color: white;
+
+
+}
+.box-general{
+    flex: 1;
+    background: url("../../../assets/av.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    padding: 20px;
+}
+
+.darken{
+    flex: 1;
+    background-color: black;
+}
+
+.btn-login{
+    margin: 20px;
+}
