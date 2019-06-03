@@ -7,6 +7,7 @@ export interface Curriculo {
     email: string;
     foto: string;
     experiencia: string;
+    telefone: string;
     uid: string;
 
 }

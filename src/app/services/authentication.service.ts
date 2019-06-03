@@ -40,4 +40,8 @@ export class AuthenticationService {
   detailUser() {
     return flogin.auth().currentUser;
   }
+
+  isAuthenticated() {
+    return !!flogin.auth().currentUser;
+  }
 }

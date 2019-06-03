@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Eldin App - Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div class="box-register">
+
+    <div class="box-profile-picture">
+      
+      <ion-img (click)="getPicture()" class="profile-picture" [src]="this.profilePicture"></ion-img>
+
+    </div>
+        
+    <form [formGroup]="formEdit" (ngSubmit)="edit(formEdit.value)">
+
+      <ion-item>
+        <ion-label position="floating">Primeiro Nome</ion-label>
+        <ion-input type="text" formControlName="nome"></ion-input>
+      </ion-item>
+        
+      <ion-item>
+        <ion-label position="floating">Sobrenome</ion-label>
+        <ion-input type="text" formControlName="sobrenome"></ion-input>
+      </ion-item>
+        
+      <ion-item>
+        <ion-label position="floating">E-mail</ion-label>
+        <ion-input disabled type="email" formControlName="email"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label position="floating">Pretenção do Cargo:</ion-label>
+        <ion-input type="text" formControlName="cargo"></ion-input>
+      </ion-item>
+        
+      <ion-item>
+        <ion-label position="floating">Experiência Profissional</ion-label>
+        <ion-textarea formControlName="experiencia"></ion-textarea>
+      </ion-item>
+  
+      <ion-button type="submit" class="btn-login" color="tertiary" expand="block" shape="round">
+        <ion-icon slot="end" name="arrow-forward"></ion-icon>
+        Salvar
+      </ion-button>
+
+    </form>
+
+  </div>
+  
+</ion-content>

@@ -17,6 +17,11 @@ export class AppComponent {
       title: 'Home',
       url: '/home',
       icon: 'home'
+    },
+    {
+      title: 'Perfil',
+      url: '/profile',
+      icon: 'person'
     }
   ];
 

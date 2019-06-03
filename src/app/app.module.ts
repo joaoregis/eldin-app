@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 
 // Native
 import { Camera } from '@ionic-native/camera/ngx';
+import { CallNumber } from '@ionic-native/call-number/ngx';
 
 // Environments
 import { AppRoutingModule } from './app-routing.module';
@@ -43,7 +44,8 @@ fb.initializeApp(environment.firebase);
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: FirestoreSettingsToken, useValue: {} },
-    Camera
+    Camera,
+    CallNumber
   ],
   bootstrap: [AppComponent]
 })
