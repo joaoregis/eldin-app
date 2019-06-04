@@ -59,24 +59,21 @@ export class CurriculosService {
 
   }
 
-  getCurriculoByUID(uid: string): Promise<Curriculo> {
+  getCurriculoByUID(uid: string): Promise<Observable<Curriculo[]>> {
 
     return new Promise((resolve, reject) => {
 
-      const array = [];
-      this.afs.collection('curriculos').get().toPromise().then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          array.push(doc.data());
-        });
-      });
-
-      setTimeout(() => {
-
-        const users = array.find((el) => el.uid === uid);
-        const uniqueUser = users.pop();
-        resolve(uniqueUser);
-
-      }, 100);
+      resolve(this.afs.collection<Curriculo>('curriculos', ref => {
+        return ref.where('uid', '==', uid);
+      }).snapshotChanges().pipe(
+        map(actions => {
+          return actions.map(a => {
+            const data = a.payload.doc.data();
+            const id = a.payload.doc.id;
+            return {id, ...data};
+          });
+        })
+      ));
 
     });
   }
@@ -96,15 +93,14 @@ export class CurriculosService {
     return this.curriculosCollection.add(curriculo);
   }
 
-  updateCurriculo(curriculo: Curriculo): Promise<void> {
-    return this.curriculosCollection.doc(curriculo.id)
+  updateCurriculo(curriculo: any, id: string): Promise<void> {
+    return this.curriculosCollection.doc(id)
       .update({
         nome: curriculo.nome,
         sobrenome: curriculo.sobrenome,
         experiencia: curriculo.experiencia,
         cargo: curriculo.cargo,
         foto: curriculo.foto,
-        email: curriculo.email,
         telefone: curriculo.telefone
       });
   }

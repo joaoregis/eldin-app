@@ -26,7 +26,20 @@ export class ProfilePage implements OnInit {
     private curriculosService: CurriculosService,
     private router: Router,
     private toast: ToastController
-  ) { }
+  ) { 
+
+
+    this.formEdit = this.formBuilder.group({
+      nome: new FormControl('', Validators.required),
+      sobrenome: new FormControl('', Validators.required),
+      telefone: new FormControl('', Validators.required),
+      email: new FormControl('', Validators.required),
+      cargo: new FormControl('', Validators.required),
+      experiencia: new FormControl('', Validators.required)
+    });
+
+
+  }
 
   ngOnInit() {
 
@@ -39,23 +52,54 @@ export class ProfilePage implements OnInit {
 
     this.curriculosService.getCurriculoByUID(uid)
       .then((curr) => {
-          console.log(curr);
-          this.curriculo = curr;
+
+
+        curr.subscribe(res => {
+          const results = res.pop() as Curriculo;
+          
+          console.log(results);
+
+          this.curriculo = results;
+
+          this.profilePicture = results.foto;
 
           this.formEdit = this.formBuilder.group({
-            nome: new FormControl(curr.nome, Validators.required),
-            sobrenome: new FormControl(curr.sobrenome, Validators.required),
-            email: new FormControl(curr.email, Validators.required),
-            cargo: new FormControl(curr.cargo, Validators.required),
-            experiencia: new FormControl(curr.experiencia, Validators.required)
+            nome: new FormControl(results.nome, Validators.required),
+            sobrenome: new FormControl(results.sobrenome, Validators.required),
+            telefone: new FormControl(results.telefone, Validators.required),
+            email: new FormControl(results.email, Validators.required),
+            cargo: new FormControl(results.cargo, Validators.required),
+            experiencia: new FormControl(results.experiencia, Validators.required)
           });
+
+        });
 
       });
 
   }
 
-  edit(user: any) {
+  edit(curriculo: any) {
 
+    this.curriculosService.updateCurriculo({
+      nome: curriculo.nome,
+      sobrenome: curriculo.sobrenome,
+      experiencia: curriculo.experiencia,
+      cargo: curriculo.cargo,
+      foto: this.profilePicture,
+      telefone: curriculo.telefone
+    }, this.curriculo.id)
+      .then((db) => {
+        this.router.navigateByUrl('/home');
+        this.showToast('Alterado com sucesso.');
+      });
+
+  }
+
+  showToast(msg: string): void {
+    this.toast.create({
+      message: msg,
+      duration: 2000
+    }).then(toast => toast.present());
   }
 
   getPicture(): void {

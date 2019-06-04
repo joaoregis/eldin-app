@@ -23,7 +23,7 @@
           <p>{{user.cargo}}</p>
           <p>{{user.experiencia}}</p>
           <p>{{user.telefone}}</p>
-          <button (click)="doCall({{user.telefone}})">Ligar</button>
+          <button (click)="doCall(user.telefone)">Ligar</button>
         </ion-card-content>
       </ion-card>
     </ion-list>

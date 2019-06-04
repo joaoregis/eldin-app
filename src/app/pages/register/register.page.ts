@@ -34,7 +34,7 @@ export class RegisterPage implements OnInit {
       password: new FormControl('', Validators.required),
       cargo: new FormControl('', Validators.required),
       experiencia: new FormControl('', Validators.required),
-      telefone: new FormControl('', Validators.pattern('^(\([0-9]{2}\))\s([9]{1})?([0-9]{4})-([0-9]{4})$'))
+      telefone: new FormControl('', Validators.required)
     });
 
   }
