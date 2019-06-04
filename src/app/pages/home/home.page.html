@@ -8,22 +8,32 @@
 </ion-header>
 
 <ion-content>
+  <ion-card>
 
     <ion-input type="text" placeholder="Pesquisar... (Cargo, Nome, Sobrenome)" (ionChange)='onSearch($event.target.value)'></ion-input>
+  </ion-card>
 
     <ion-list lines="none" *ngFor="let user of (users | async)">
       <ion-card class="welcome-card">
         <ion-card-header>
-          <ion-card-title>{{user.nome}}</ion-card-title>
-          <ion-card-subtitle>{{user.sobrenome}}</ion-card-subtitle>
+          <div class="heder-card">
+
+            <img style="width:64px !important;" height="64px" [src]="user.foto" />
+            <div class="title-card">
+
+              <ion-card-title >{{user.nome}} {{user.sobrenome}}</ion-card-title>
+              <ion-card-subtitle>{{user.cargo}}</ion-card-subtitle>
+            </div>
+          </div>
         </ion-card-header>
         <ion-card-content>
-          <img style="width:64px !important;" height="64px" [src]="user.foto" />
-          <p>{{user.email}}</p>
-          <p>{{user.cargo}}</p>
-          <p>{{user.experiencia}}</p>
-          <p>{{user.telefone}}</p>
-          <button (click)="doCall(user.telefone)">Ligar</button>
+          <p>Email: {{user.email}}</p>
+          <p>Experiencias: {{user.experiencia}}</p>
+          <p>Telefone: {{user.telefone}}</p>
+          <ion-button (click)="doCall(user.telefone)" color="primary">
+            <ion-icon name="call"></ion-icon>
+            Ligar
+          </ion-button>
         </ion-card-content>
       </ion-card>
     </ion-list>

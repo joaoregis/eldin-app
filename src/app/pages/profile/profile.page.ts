@@ -89,7 +89,7 @@ export class ProfilePage implements OnInit {
       telefone: curriculo.telefone
     }, this.curriculo.id)
       .then((db) => {
-        this.router.navigateByUrl('/home');
+        this.router.navigateByUrl('/home', { state: { isUpdate: true } });
         this.showToast('Alterado com sucesso.');
       });
 

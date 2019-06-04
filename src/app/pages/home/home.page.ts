@@ -45,6 +45,7 @@ export class HomePage implements OnInit {
 
   }
 
+
   ngOnInit() {
 
     if (!this.authService.isAuthenticated()) {
