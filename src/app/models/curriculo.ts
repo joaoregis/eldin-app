@@ -9,5 +9,6 @@ export interface Curriculo {
     experiencia: string;
     telefone: string;
     uid: string;
+    cargoatual: string;
 
 }

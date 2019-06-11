@@ -22,14 +22,14 @@
             <div class="title-card">
 
               <ion-card-title >{{user.nome}} {{user.sobrenome}}</ion-card-title>
-              <ion-card-subtitle>{{user.cargo}}</ion-card-subtitle>
+              <ion-card-subtitle>{{user.cargoatual}}</ion-card-subtitle>
             </div>
           </div>
         </ion-card-header>
         <ion-card-content>
+          <p>Objetivo de Cargo: {{user.cargo}}</p>
           <p>Email: {{user.email}}</p>
           <p>Experiencias: {{user.experiencia}}</p>
-          <p>Telefone: {{user.telefone}}</p>
           <ion-button (click)="doCall(user.telefone)" color="primary">
             <ion-icon name="call"></ion-icon>
             Ligar

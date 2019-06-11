@@ -12,13 +12,14 @@ import { Router } from '@angular/router';
 export class LoginPage implements OnInit {
 
   formLogin: FormGroup;
+  isLoading = false;
 
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthenticationService,
     private router: Router,
     private toast: ToastController
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.formLogin = this.formBuilder.group({
@@ -36,13 +37,15 @@ export class LoginPage implements OnInit {
   }
 
   login(user: any): void {
+    this.isLoading = true;
     this.authService.loginUser(user)
       .then(
-        res => this.router.navigateByUrl('/home')
+        res => { this.router.navigateByUrl('/home'); this.isLoading = false; }
       )
       .catch((err) => {
 
-        this.showToast('Login falhou.');
+        this.isLoading = false;
+        this.showToast('Usuário e/ou Senha inválidos');
 
       });
   }

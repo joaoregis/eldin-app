@@ -33,7 +33,6 @@ export class CurriculosService {
 
     return this.curriculosCollection.snapshotChanges().pipe(
       map(items => items.filter(item => {
-
         return (
           item.payload.doc.data().cargo.toLowerCase().includes(search.toLowerCase())
           || item.payload.doc.data().nome.toLowerCase().includes(search.toLowerCase())
@@ -54,7 +53,6 @@ export class CurriculosService {
   }
 
   getCurriculos(): Observable<Curriculo[]> {
-    
     this.curriculos = this.curriculosCollection.snapshotChanges()
       .pipe(
         map(actions => {
@@ -112,7 +110,8 @@ export class CurriculosService {
         experiencia: curriculo.experiencia,
         cargo: curriculo.cargo,
         foto: curriculo.foto,
-        telefone: curriculo.telefone
+        telefone: curriculo.telefone,
+        cargoatual: curriculo.cargoatual
       });
   }
 

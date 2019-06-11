@@ -6,29 +6,37 @@
 
 <div class="box-general">
 
-  <div class="box-login">
+  <div class="box-login" style="min-height: 246px;">
+     
+    <div *ngIf="isLoading" style="margin-top: 25%;text-align: center;">
+      <ion-spinner name="dots"></ion-spinner>
+      <p style="margin-top: -7px;color:black;">Fazendo Login...</p>
+    </div>
 
-    <form [formGroup]="formLogin" (ngSubmit)="login(formLogin.value)">
-
+    <div *ngIf="!isLoading">
+      
+      <form [formGroup]="formLogin" (ngSubmit)="login(formLogin.value)">
+        
         <ion-item>
-            <ion-label position="floating">E-mail</ion-label>
-            <ion-input type="text" formControlName="email"></ion-input>
-          </ion-item>
-          
-          <ion-item>
-            <ion-label position="floating">Password</ion-label>
-            <ion-input type="password" formControlName="password"></ion-input>
-          </ion-item>
-    
-          <ion-button type="submit" class="btn-login" color="tertiary" expand="block" shape="round">
-            <ion-icon slot="end" name="arrow-forward"></ion-icon>
-            Login
-          </ion-button>
-    
-    </form>
-    
-    <a [routerLink]="['/register']">Já tem uma conta? Faça login!</a>
-
+          <ion-label position="floating">E-mail</ion-label>
+          <ion-input type="text" formControlName="email"></ion-input>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label position="floating">Password</ion-label>
+          <ion-input type="password" formControlName="password"></ion-input>
+        </ion-item>
+        
+        <ion-button type="submit" class="btn-login" color="tertiary" expand="block" shape="round">
+          <ion-icon slot="end" name="arrow-forward"></ion-icon>
+          Login
+        </ion-button>
+        
+      </form>
+      
+      <a [routerLink]="['/register']">Já tem uma conta? Faça login!</a>
+    </div>
+      
   </div>
-    
+   
 </div>
