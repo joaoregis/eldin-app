@@ -9,7 +9,12 @@
 
 <ion-content class="ion-padding">
 
-  <div class="box-register">
+  <div *ngIf="isLoading" style="margin-top: 25%;text-align: center;">
+    <ion-spinner name="dots"></ion-spinner>
+    <p style="margin-top: -7px;color:black;">Salvando...</p>
+  </div>
+
+  <div *ngIf="!isLoading"  class="box-register">
 
     <div class="box-profile-picture">
       
