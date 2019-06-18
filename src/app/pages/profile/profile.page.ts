@@ -36,6 +36,7 @@ export class ProfilePage implements OnInit {
       telefone: new FormControl('', Validators.required),
       email: new FormControl('', Validators.required),
       cargo: new FormControl('', Validators.required),
+      cargoatual: new FormControl('', Validators.required),
       experiencia: new FormControl('', Validators.required)
     });
 
@@ -70,6 +71,7 @@ export class ProfilePage implements OnInit {
             telefone: new FormControl(results.telefone, Validators.required),
             email: new FormControl(results.email, Validators.required),
             cargo: new FormControl(results.cargo, Validators.required),
+            cargoatual: new FormControl(results.cargoatual, Validators.required),
             experiencia: new FormControl(results.experiencia, Validators.required)
           });
 
