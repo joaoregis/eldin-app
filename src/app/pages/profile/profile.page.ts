@@ -89,7 +89,8 @@ export class ProfilePage implements OnInit {
       experiencia: curriculo.experiencia,
       cargo: curriculo.cargo,
       foto: this.profilePicture,
-      telefone: curriculo.telefone
+      telefone: curriculo.telefone,
+      cargoatual: curriculo.cargoatual
     }, this.curriculo.id)
       .then((db) => {
         this.isLoading = false;
